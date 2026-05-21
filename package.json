@@ -1,0 +1,53 @@
+{
+  "name": "voxide",
+  "version": "1.0.0",
+  "description": "VoxIDE: voice-controlled accessible IDE for blind and mobility-impaired developers",
+  "main": "dist/main/main-voxide.js",
+  "author": "OK Studio",
+  "license": "MIT",
+  "overrides": {
+    "tar": "^7.5.10",
+    "dompurify": "^3.3.2"
+  },
+  "scripts": {
+    "dev": "concurrently \"npm run dev:renderer\" \"npm run dev:main\"",
+    "dev:renderer": "vite",
+    "dev:main": "npx tsc -p tsconfig.voxide.json --watch",
+    "clean:main": "node -e \"const fs=require('fs');const p=require('path');try{fs.rmSync(p.join(__dirname,'dist','main'),{recursive:true,force:true});fs.rmSync(p.join(__dirname,'tsconfig.voxide.tsbuildinfo'),{force:true})}catch(e){}\"",
+    "build:renderer": "vite build",
+    "build:main": "npm run clean:main && npx tsc -p tsconfig.voxide.json",
+    "build:native": "cd native/voxide-audio && npm run build",
+    "build": "npm run build:renderer && npm run build:main",
+    "start": "electron .",
+    "package": "npm run build:native && npm run build && electron-builder --config build/electron-builder.voxide.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "@deepgram/sdk": "^3.9.0",
+    "@monaco-editor/react": "^4.6.0",
+    "lucide-react": "^0.454.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/jsdom": "^28.0.0",
+    "@types/node": "^22.10.2",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^9.1.0",
+    "electron": "^40.1.0",
+    "electron-builder": "^26.8.1",
+    "jsdom": "^28.1.0",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15",
+    "typescript": "^5.9.3",
+    "vite": "^6.0.3",
+    "vitest": "^4.0.18"
+  }
+}

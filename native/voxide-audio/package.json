@@ -1,0 +1,23 @@
+{
+  "name": "voxide-audio",
+  "version": "0.1.0",
+  "description": "Native WASAPI audio capture for VoxIDE",
+  "main": "voxide-audio.win32-x64-msvc.node",
+  "types": "index.d.ts",
+  "napi": {
+    "name": "voxide-audio",
+    "triples": {
+      "defaults": false,
+      "additional": [
+        "x86_64-pc-windows-msvc"
+      ]
+    }
+  },
+  "scripts": {
+    "build": "napi build --platform --release",
+    "build:debug": "napi build --platform"
+  },
+  "devDependencies": {
+    "@napi-rs/cli": "^2.18.0"
+  }
+}

@@ -1,0 +1,23 @@
+[package]
+name = "voxide-audio"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+napi = { version = "2", features = ["napi6", "serde-json", "async"] }
+napi-derive = "2"
+cpal = "0.15"
+anyhow = "1"
+ringbuf = "0.4"
+parking_lot = "0.12"
+
+[build-dependencies]
+napi-build = "2"
+
+[profile.release]
+opt-level = 3
+lto = true
+strip = true
