@@ -4,7 +4,7 @@ import { contextBridge, ipcRenderer } from 'electron'
 // Exposes audio, Deepgram, filesystem, shell, and settings APIs.
 // No GitHub auth — users provide their own API keys.
 contextBridge.exposeInMainWorld('electronAPI', {
-  // Managed API keys (fetched from gitconnect.pro)
+  // Managed API keys (optional, bundled at build time)
   getManagedKeys: () => ipcRenderer.invoke('keys:getManagedKeys'),
 
   // Audio devices

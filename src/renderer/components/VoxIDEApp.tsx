@@ -594,7 +594,7 @@ export function VoxIDEApp() {
   // Startup
   // ============================================================================
 
-  // Fetch managed API keys from GitConnect Pro on startup
+  // Load managed API keys on startup (bundled if present), else fall back to BYO keys
   useEffect(() => {
     const fetchKeys = async () => {
       if (!window.electronAPI?.getManagedKeys) {
